@@ -5,4 +5,14 @@
 */
 
 // your code
-let sum
+
+let sum = 1; 3; 5; 7; 9; 11; 13; 15; 17; 19;
+let c = 1
+
+for (let c = 1; c < 20; c++) {
+    if (c % 2) {
+        alert ( c );
+    } 
+}
+
+console.log(c);

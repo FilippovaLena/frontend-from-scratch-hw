@@ -6,7 +6,7 @@
 
 // your code
 
-let sum = 1; 3; 5; 7; 9; 11; 13; 15; 17; 19;
+let sum = 100
 let c = 1
 
 for (let c = 1; c < 20; c++) {

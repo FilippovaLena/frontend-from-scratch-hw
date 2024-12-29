@@ -10,9 +10,7 @@ let sum = 100
 let c = 1
 
 for (let c = 1; c < 20; c++) {
-    if (c % 2) {
-        alert ( c );
-    } 
+    if (c % 2)
 }
 
 console.log(c);

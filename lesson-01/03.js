@@ -6,11 +6,14 @@
 
 // your code
 
-let sum = 100
-let c = 1
+let sum = 100; 
+let a = 1;
 
-for (let c = 1; c < 20; c++) {
-    if (c % 2)
+while (a <= 20) {
+    if (a % 2 === 1) {
+        sum += a;
+    }
+    a++;
 }
 
-console.log(c);
+console.log(sum);

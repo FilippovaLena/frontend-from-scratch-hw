@@ -6,7 +6,7 @@
 
 // your code
 
-let sum = 100; 
+let sum = 0; 
 let a = 1;
 
 while (a <= 20) {

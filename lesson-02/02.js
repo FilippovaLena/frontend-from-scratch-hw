@@ -7,16 +7,14 @@
 * Для успешного прохождения тестов не меняйте названия переменных!
 */
 
-let dice1 // your code
-let dice2 // your code
-let isWinningDouble // your code
+let dice1 = Math.floor(Math.random() * 6) + 1; // Генерация случайного числа от 1 до 6 для первого кубика
+let dice2 = Math.floor(Math.random() * 6) + 1; // Генерация случайного числа от 1 до 6 для второго кубика
+let isWinningDouble = (dice1 === dice2) && (dice1 > 3); // Проверка условий для выигрышного дубля
 
-/*
-console.log('Первый бросок: ' + dice1)
-console.log('Второй бросок: ' + dice2)
+console.log('Первый бросок: ' + dice1);
+console.log('Второй бросок: ' + dice2);
 if (isWinningDouble) {
-  console.log('Выигрышный дубль!')
+  console.log('Выигрышный дубль!');
 } else {
-  console.log('Не выигрышный дубль.')
+  console.log('Не выигрышный дубль.');
 }
-*/

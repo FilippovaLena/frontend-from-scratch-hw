@@ -4,6 +4,7 @@
  */
 
 function isNumeric(str) {
+  const result = isNumeric('1.23e4');
   str = str.trim();
   return /^-?\d+(\.\d+)?$/.test(str); // your code
 }

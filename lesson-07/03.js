@@ -13,9 +13,5 @@ function truncate(str, maxLength) {
   if (str.length > maxLength) { 
     return str.slice(0, maxLength - 3) + '...';
   } 
-  return str;// your code
+  return str; // your code
 }
-
-// Примеры работы функции
-console.log(truncate("Вот, что мне действительно нравится в этом", 20)); // Ожидаемый результат: "Вот, что мне действи..."
-console.log(truncate("Короткая строка", 20)); // Ожидаемый результат: "Короткая строка"

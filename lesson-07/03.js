@@ -16,4 +16,3 @@ function truncate(str, maxLength) {
 }
 
 const result = truncate("Вот, что мне действительно нравится в этом", 20)
-const result = truncate("Короткая строка", 20)

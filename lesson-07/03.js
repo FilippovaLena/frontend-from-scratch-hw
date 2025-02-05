@@ -9,10 +9,12 @@
 * truncate("Короткая строка", 20) // Ожидаемый результат: "Короткая строка"
 */
 
-function truncate(str, maxLength) 
-const result = truncate("Какая-то длинная строка, которая точно должна быть обрезана", 10); {
+function truncate(str, maxLength) {
   if (str.length > maxLength) { 
     return str.slice(0, maxLength - 3) + '...';
   } 
   return str; // your code
 }
+
+const result = truncate("Вот, что мне действительно нравится в этом...", 20);
+const result = truncate("Какая-то длинная строка, которая точно должна быть обрезана", 10);

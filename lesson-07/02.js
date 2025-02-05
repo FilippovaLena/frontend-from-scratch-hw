@@ -5,7 +5,7 @@
 
 function isNumeric(str) {
   str = str.trim();
-  return /^-?\d+(\.\d+)?$/.test(str); // your code
+  return !isNaN(str) && !isNaN(parseFloat(str)); // your code
 }
 
  console.log(isNumeric("123")) // Ожидаемый результат: true

@@ -10,7 +10,15 @@
 */
 
 function truncate(str, maxLength) {
-  if (str.length > maxLength) { 
-    return str.slice(10, maxLength - 3) + '...';
-  } return str;
+  javascript
+function truncate(str, maxLength) {
+  if (typeof str !== 'string' || typeof maxLength !== 'number') {
+    return "Ошибка: Входные данные некорректного типа.";
+  }
+
+  if (str.length <= maxLength) {
+    return str;
+  } else {
+    return str.substring(0, maxLength) + "...";
+  }
 }

@@ -10,8 +10,6 @@
 */
 
 function truncate(str, maxLength) {
-  javascript
-function truncate(str, maxLength) {
   if (typeof str !== 'string' || typeof maxLength !== 'number') {
     return "Ошибка: Входные данные некорректного типа.";
   }

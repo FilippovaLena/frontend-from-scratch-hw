@@ -15,6 +15,3 @@ function truncate(str, maxLength) {
   } 
   return str; // your code
 }
-
-const result = truncate("Вот, что мне действительно нравится в этом...", 20);
-const result = truncate("Какая-то длинная строка, которая точно должна быть обрезана", 10);

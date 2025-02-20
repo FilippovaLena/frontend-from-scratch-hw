@@ -23,77 +23,47 @@
 
 const model = {
   movies: [],
-  
   addMovie(title, description) {
     const id = Math.random();
     const newMovie = { id, title, description };
     this.movies.push(newMovie);
     view.renderMovies(this.movies);
   },
-  
   deleteMovie(id) {
     this.movies = this.movies.filter(movie => movie.id !== id);
     view.renderMovies(this.movies);
-  }
+  },
 };
 
 const view = {
   init() {
     this.renderMovies(model.movies);
-    
-    const form = document.querySelector('.form');
-    const movieList = document.querySelector('.movie-list');
 
-    form.addEventListener('submit', (event) => {
+    const form = document.querySelector('.form');
+    const inputTitle = document.querySelector('.input-title');
+    const inputDescription = document.querySelector('.input-description');
+
+    form.addEventListener('submit', function (event) {
       event.preventDefault();
-      const title = form.querySelector('.title').value;
-      const description = form.querySelector('.description').value;
-      model.addMovie(title, description);
-      form.reset();
+      const title = inputTitle.value;
+      const description = inputDescription.value;
+      controller.addMovie(title, description);
+
+      inputTitle.value = '';
+      inputDescription.value = '';
     });
 
-    movieList.addEventListener('click', (event) => {
+    const list = document.querySelector('.list');
+    list.addEventListener('click', function(event) {
       if (event.target.classList.contains('delete-button')) {
-        const movieId = parseFloat(event.target.dataset.id);
+        const movieId = event.target.parentElement.id; // Get the id from the parent <li>
         controller.deleteMovie(movieId);
       }
     });
   },
-  
   renderMovies(movies) {
-    const movieList = document.querySelector('.movie-list');
-    movieList.innerHTML = ''; // Очистить список
+    const list = document.querySelector('.list');
+    let moviesHTML = '';
 
-    movies.forEach(movie => {
-      const movieItem = document.createElement('div');
-      movieItem.className = 'movie-item';
-      movieItem.innerHTML = `
-        <span>${movie.title}</span>
-        <span>${movie.description}</span>
-        <button class="delete-button" data-id="${movie.id}">Удалить</button>
-      `;
-      movieList.appendChild(movieItem);
-    });
-  },
-  
-  showMessage(message) {
-    const messageBox = document.querySelector('.message-box');
-    messageBox.textContent = message;
-    messageBox.style.display = 'block';
-    setTimeout(() => {
-      messageBox.style.display = 'none';
-    }, 3000);
-  }
-};
-
-const controller = {
-  deleteMovie(id) {
-    model.deleteMovie(id);
-    view.showMessage("Фильм успешно удалён!");
-  }
-};
-
-// Инициализация приложения
-document.addEventListener('DOMContentLoaded', () => {
-  view.init();
-});
+    for (const movie of movies) {
+      moviesHTML

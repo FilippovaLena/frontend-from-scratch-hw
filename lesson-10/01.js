@@ -23,12 +23,14 @@
 
 const model = {
   movies: [],
+  
   addMovie(title, description) {
     const id = Math.random();
     const newMovie = { id, title, description };
     this.movies.push(newMovie);
     view.renderMovies(this.movies);
   },
+  
   deleteMovie(id) {
     this.movies = this.movies.filter(movie => movie.id !== id);
     view.renderMovies(this.movies);
@@ -38,45 +40,60 @@ const model = {
 const view = {
   init() {
     this.renderMovies(model.movies);
-
+    
     const form = document.querySelector('.form');
-    const inputTitle = document.querySelector('.input-title');
-    const inputDescription = document.querySelector('.input-description');
+    const movieList = document.querySelector('.movie-list');
 
-    form.addEventListener('submit', function (event) {
+    form.addEventListener('submit', (event) => {
       event.preventDefault();
-      const title = inputTitle.value;
-      const description = inputDescription.value;
-      controller.addMovie(title, description);
-
-      inputTitle.value = '';
-      inputDescription.value = '';
+      const title = form.querySelector('.title').value;
+      const description = form.querySelector('.description').value;
+      model.addMovie(title, description);
+      form.reset();
     });
 
-    // Обработчик события для удаления фильма
-    const list = document.querySelector('.list');
-    list.addEventListener('click', function (event) {
+    movieList.addEventListener('click', (event) => {
       if (event.target.classList.contains('delete-button')) {
-        const movieId = event.target.parentElement.id;
+        const movieId = parseFloat(event.target.dataset.id);
         controller.deleteMovie(movieId);
       }
     });
   },
-  // остальной код
-};
+  
+  renderMovies(movies) {
+    const movieList = document.querySelector('.movie-list');
+    movieList.innerHTML = ''; // Очистить список
 
-const controller = {
-  addMovie(title, description) {
-    if (title.trim() !== '' && description.trim() !== '') {
-      model.addMovie(title, description);
-      view.displayMessage('Фильм добавлен успешно!');
-    } else {
-      view.displayMessage('Заполните все поля!', true);
-    }
+    movies.forEach(movie => {
+      const movieItem = document.createElement('div');
+      movieItem.className = 'movie-item';
+      movieItem.innerHTML = `
+        <span>${movie.title}</span>
+        <span>${movie.description}</span>
+        <button class="delete-button" data-id="${movie.id}">Удалить</button>
+      `;
+      movieList.appendChild(movieItem);
+    });
   },
-  deleteMovie(id) {
-    model.deleteMovie(id);
-    view.displayMessage('Фильм успешно удалён!');
+  
+  showMessage(message) {
+    const messageBox = document.querySelector('.message-box');
+    messageBox.textContent = message;
+    messageBox.style.display = 'block';
+    setTimeout(() => {
+      messageBox.style.display = 'none';
+    }, 3000);
   }
 };
 
+const controller = {
+  deleteMovie(id) {
+    model.deleteMovie(id);
+    view.showMessage("Фильм успешно удалён!");
+  }
+};
+
+// Инициализация приложения
+document.addEventListener('DOMContentLoaded', () => {
+  view.init();
+});

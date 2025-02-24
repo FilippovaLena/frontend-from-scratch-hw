@@ -30,7 +30,7 @@ const model = {
     view.renderMovies(this.movies);
   },
   deleteMovie(id) {
-    this.movies = this.movies.filter(movie => movie.id !== id);
+    this.movies = this.movies.filter(movie => movie.id !== parseFloat(id));
     view.renderMovies(this.movies);
   }
 };
